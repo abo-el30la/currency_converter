@@ -1,3 +1,5 @@
+import 'package:currency_converter/config/routing/k_routes.dart';
+import 'package:currency_converter/core/extension/context_extensions.dart';
 import 'package:currency_converter/core/res/assets.dart';
 import 'package:currency_converter/core/widgets/customs/copy_right.dart';
 import 'package:currency_converter/screens/splash/cubit/splash_cubit.dart';
@@ -12,7 +14,12 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SplashCubit(),
+      create: (context) => SplashCubit()
+        ..navigateToHomeScreen(
+          onNavigate: () {
+            context.navReplaceNamedTo(KAppRoutes.homeScreen);
+          },
+        ),
       child: BlocConsumer<SplashCubit, SplashState>(
         listener: (context, state) {},
         builder: (context, state) {

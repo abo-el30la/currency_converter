@@ -13,7 +13,7 @@ class ApiService {
   /// this method is used to get the latest exchange rates
   /// ex. currencies=USD,EUR,GBP
   /// ex. base_currency=USD
-  Future<Response> getLatest({
+  Future<Response<dynamic>> getLatestRates({
     String currencies = '',
     String baseCurrency = 'USD',
   }) async {
@@ -28,11 +28,12 @@ class ApiService {
   }
 
   /// get currency list
-  Future<Response> getCurrencies() async {
+  Future<dynamic> getCurrencies({String? currencies}) async {
     return _apiClient.get(
       '/v1/currencies',
       queryParameters: {
         'apikey': ServiceConst.apiKey,
+        'currencies': currencies,
       },
     );
   }
