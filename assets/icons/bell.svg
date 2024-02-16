@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.14" height="27.405" viewBox="0 0 25.14 27.405">
+  <g id="bell" transform="translate(-18.724 -56.585)">
+    <g id="bell-2" data-name="bell" transform="translate(20 50)">
+      <g id="bell-ringing" transform="translate(-4.094 5.044)">
+        <path id="Path_11399" data-name="Path 11399" d="M37.242,34.577a8.638,8.638,0,1,1,17.276,0h0c0,4.309.9,6.809,1.7,8.176a.962.962,0,0,1-.828,1.449H36.374a.962.962,0,0,1-.828-1.449c.794-1.367,1.7-3.867,1.7-8.176ZM42.03,44.2v.962a3.85,3.85,0,0,0,7.7,0V44.2m2.819-20.213a12.568,12.568,0,0,1,4.562,5.067m-22.461,0a12.568,12.568,0,0,1,4.562-5.067" transform="translate(-30.492 -21.068)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>
