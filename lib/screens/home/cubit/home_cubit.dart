@@ -19,12 +19,13 @@ class HomeCubit extends Cubit<HomeState> {
       currencyList.clear();
       isGetCurrencyListLoading = true;
       emit(GetCurrencyListLoading());
-
-      Box<Currency> currencyBox = Hive.box<Currency>(HiveConfig.currenciesBoxName);
-      currencyBox.toMap().forEach((key, value) {
-        currencyList.add(value);
-      });
-      if(currencyList.isNotEmpty){
+      Box currencyBox = await Hive.openBox<Currency>(HiveConfig.currenciesBoxName);
+      if (currencyBox.isOpen && currencyBox.isNotEmpty) {
+        currencyBox.toMap().forEach((key, value) {
+          currencyList.add(value);
+        });
+      }
+      if (currencyList.isNotEmpty) {
         isGetCurrencyListLoading = false;
         emit(GetCurrencyListSuccess());
         return;
@@ -41,12 +42,16 @@ class HomeCubit extends Cubit<HomeState> {
       getCurrenciesResponse.data?.forEach((key, value) {
         currencyList.add(value);
         currencyBox.put(value.code, value);
+
       });
       logger.i(result.runtimeType);
       emit(GetCurrencyListSuccess());
     } catch (e, s) {
       logger.e(e.toString());
       logger.e(s.toString());
+      print(e.toString());
+      print(s.toString());
+
       isGetCurrencyListLoading = false;
       emit(GetCurrencyListError());
     }

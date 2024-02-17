@@ -14,7 +14,6 @@ Future<void> main() async {
   Bloc.observer = MyBlocObserver();
   await Hive.initFlutter();
   Hive.registerAdapter(CurrencyAdapter());
-  await Hive.openBox<Currency>(HiveConfig.currenciesBoxName);
 
   runApp(
     ScreenUtilInit(

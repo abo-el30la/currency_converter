@@ -19,3 +19,5 @@ class GetBaseCurrenciesListState extends ConverterState {}
 class SwapCurrencyState extends ConverterState {}
 
 class ConvertCurrencyState extends ConverterState {}
+
+class NoInternetState extends ConverterState {}

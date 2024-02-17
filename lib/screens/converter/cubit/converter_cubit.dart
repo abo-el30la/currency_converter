@@ -5,6 +5,7 @@ import 'package:currency_converter/utils/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../../data/model/response_models/get_currencies.dart';
 import '../../../data/storage/hive_config.dart';
@@ -22,7 +23,13 @@ class ConverterCubit extends Cubit<ConverterState> {
   List<Currency> currenciesList = [];
   Map<String, double> exchangeRates = {};
 
+
   void setBaseCurrency(String currency) async {
+    bool hasConnection = await InternetConnectionChecker().hasConnection;
+    if (!hasConnection) {
+      emit(NoInternetState());
+      return;
+    }
     if (currency == baseCurrency) {
       return;
     }
@@ -58,6 +65,11 @@ class ConverterCubit extends Cubit<ConverterState> {
 
   Future<void> getCurrencyExchangeRate() async {
     try {
+      bool hasConnection = await InternetConnectionChecker().hasConnection;
+      if (!hasConnection) {
+        emit(NoInternetState());
+        return;
+      }
       isGetCurrencyExchangeRateLoading = true;
       emit(GetCurrencyExchangeRateLoading());
       // if (exchangeRates.isNotEmpty) {
@@ -100,7 +112,7 @@ class ConverterCubit extends Cubit<ConverterState> {
     baseCurrency = targetCurrency;
     targetCurrency = temp;
     emit(SwapCurrencyState());
-    getCurrencyExchangeRate();
+    await getCurrencyExchangeRate();
     if (amountController.text.isNotEmpty) {
       convertCurrency();
     }

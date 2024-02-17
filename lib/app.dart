@@ -22,6 +22,7 @@ class App extends StatelessWidget {
         listener: (BuildContext context, LocalStates state) {},
         buildWhen: (LocalStates previousState, LocalStates currentState) => previousState != currentState,
         builder: (_, LocalStates localeState) => MaterialApp(
+          theme: ThemeData(useMaterial3: true),
           title: 'Currency Converter',
           debugShowCheckedModeBanner: false,
           localizationsDelegates: AppLocalizationSetup.localizationsDelegate,

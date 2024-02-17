@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../utils/app_text_styles.dart';
+
 class ConverterScreen extends StatelessWidget {
   const ConverterScreen({super.key});
 
@@ -15,12 +17,28 @@ class ConverterScreen extends StatelessWidget {
         ..getBaseCurrenciesList()
         ..getCurrencyExchangeRate(),
       child: BlocConsumer<ConverterCubit, ConverterState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is NoInternetState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('No internet connection'),
+              ),
+            );
+          }
+        },
         builder: (context, state) {
           final cubit = context.read<ConverterCubit>();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Converter'),
+              iconTheme: const IconThemeData(
+                color: KAppColors.primaryColor,
+              ),
+              title: Text(
+                'Converter',
+                style: KAppTextStyle.boldTextStyle.copyWith(
+                  fontSize: 20.sp,
+                ),
+              ),
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
