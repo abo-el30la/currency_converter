@@ -18,8 +18,6 @@ class KAppRoutes {
         return createRoute(const HomeScreen(), settings: routeSettings);
       case converterScreen:
         return createRoute(const ConverterScreen(), settings: routeSettings);
-      default:
-        return null;
     }
     return null;
   }

@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DialogContainer extends StatelessWidget {
   const DialogContainer({
-    Key? key,
+    super.key,
     required this.dialogPage,
     this.decoration,
     this.centerText = '',
     this.padding,
-  }) : super(key: key);
+  });
 
   final Widget dialogPage;
   final String centerText;

@@ -7,11 +7,11 @@ class NetworkImageWithLoading extends StatelessWidget {
   final String img;
 
   const NetworkImageWithLoading({
-    Key? key,
+    super.key,
     required this.img,
     this.boxFit,
     this.borderRadius = const BorderRadius.all(Radius.circular(12)),
-  }) : super(key: key);
+  });
   final BoxFit? boxFit;
   final BorderRadius borderRadius;
 

@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 
 part 'splash_state.dart';
 

@@ -7,14 +7,14 @@ import 'core/localization/app_localizations_setup.dart';
 import 'core/localization/lang_bloc/local_cubit.dart';
 
 class App extends StatelessWidget {
-
-  const App({Key? key,}) : super(key: key);
+  const App({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     _applySystemChrome();
     return MultiBlocProvider(
-
       providers: [
         BlocProvider(create: (BuildContext context) => LocalCubit()),
       ],

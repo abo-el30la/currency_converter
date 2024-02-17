@@ -8,5 +8,5 @@ abstract class LocalStates {
 }
 
 class SelectedLocale extends LocalStates {
-  const SelectedLocale(Locale locale) : super(locale);
+  const SelectedLocale(super.locale);
 }

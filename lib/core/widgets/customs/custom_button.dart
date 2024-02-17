@@ -6,7 +6,7 @@ import 'loading_widget.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    Key? key,
+    super.key,
     this.textSize,
     this.radius,
     this.horizontalPadding,
@@ -23,7 +23,7 @@ class CustomButton extends StatelessWidget {
     this.gradientColor,
     this.shadowColor = Colors.grey,
     this.backgroundColor = KAppColors.primaryColor,
-  }) : super(key: key);
+  });
 
   final double? textSize;
   final double? radius;

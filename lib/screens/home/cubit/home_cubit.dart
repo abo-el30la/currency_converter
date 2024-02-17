@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:currency_converter/data/model/response_models/get_currencies.dart';
 import 'package:currency_converter/data/repository/repository.dart';
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
 
 import '../../../utils/logger.dart';
 
