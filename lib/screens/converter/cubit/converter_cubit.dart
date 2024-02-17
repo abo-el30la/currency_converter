@@ -22,24 +22,25 @@ class ConverterCubit extends Cubit<ConverterState> {
   List<Currency> currenciesList = [];
   Map<String, double> exchangeRates = {};
 
-  void setBaseCurrency(String currency) {
-
+  void setBaseCurrency(String currency) async {
     if (currency == baseCurrency) {
       return;
     }
     baseCurrency = currency;
     exchangeRate = exchangeRates[targetCurrency] ?? 1.0;
-    if(amountController.text.isNotEmpty) {
+
+    emit(SetBaseCurrencyState());
+    await getCurrencyExchangeRate();
+
+    if (amountController.text.isNotEmpty) {
       convertCurrency();
     }
-    emit(SetBaseCurrencyState());
-    getCurrencyExchangeRate();
   }
 
   void setTargetCurrency(String currency) {
     targetCurrency = currency;
     exchangeRate = exchangeRates[targetCurrency] ?? 1.0;
-    if(amountController.text.isNotEmpty) {
+    if (amountController.text.isNotEmpty) {
       convertCurrency();
     }
     emit(SetTargetCurrencyState());
@@ -59,12 +60,12 @@ class ConverterCubit extends Cubit<ConverterState> {
     try {
       isGetCurrencyExchangeRateLoading = true;
       emit(GetCurrencyExchangeRateLoading());
-      if (exchangeRates.isNotEmpty) {
-        exchangeRate = exchangeRates[targetCurrency] ?? 1.0;
-        isGetCurrencyExchangeRateLoading = false;
-        emit(GetCurrencyExchangeRateSuccess());
-        return;
-      }
+      // if (exchangeRates.isNotEmpty) {
+      //   exchangeRate = exchangeRates[targetCurrency] ?? 1.0;
+      //   isGetCurrencyExchangeRateLoading = false;
+      //   emit(GetCurrencyExchangeRateSuccess());
+      //   return;
+      // }
       final Response result = await Repository.instance.getLatestRates(
         baseCurrency: baseCurrency,
       );
@@ -91,5 +92,17 @@ class ConverterCubit extends Cubit<ConverterState> {
     double amount = double.tryParse(amountController.text) ?? 0.0;
     double targetAmount = amount * exchangeRate;
     targetAmountController.text = targetAmount.toStringAsFixed(2);
+    emit(ConvertCurrencyState());
+  }
+
+  void swapCurrencies() async {
+    String temp = baseCurrency;
+    baseCurrency = targetCurrency;
+    targetCurrency = temp;
+    emit(SwapCurrencyState());
+    getCurrencyExchangeRate();
+    if (amountController.text.isNotEmpty) {
+      convertCurrency();
+    }
   }
 }

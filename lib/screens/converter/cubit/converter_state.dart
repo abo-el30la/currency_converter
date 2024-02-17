@@ -15,3 +15,7 @@ class SetBaseCurrencyState extends ConverterState {}
 class SetTargetCurrencyState extends ConverterState {}
 
 class GetBaseCurrenciesListState extends ConverterState {}
+
+class SwapCurrencyState extends ConverterState {}
+
+class ConvertCurrencyState extends ConverterState {}

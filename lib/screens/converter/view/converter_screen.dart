@@ -54,7 +54,9 @@ class ConverterScreen extends StatelessWidget {
                         ),
                         32.verticalSpace,
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            cubit.swapCurrencies();
+                          },
                           icon: Icon(
                             Icons.swap_horiz_sharp,
                             size: 48.r,
@@ -87,14 +89,21 @@ class ConverterScreen extends StatelessWidget {
                         ),
                         64.verticalSpace,
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: KAppColors.primaryColor,
+                          ),
                           onPressed: () {
                             cubit.convertCurrency();
                           },
                           child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 64.h),
+                            padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 64.h),
                             child: Text(
                               'Convert',
-                              style: TextStyle(fontSize: 16.sp),
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
