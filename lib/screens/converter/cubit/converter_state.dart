@@ -11,3 +11,7 @@ class GetCurrencyExchangeRateSuccess extends ConverterState {}
 class GetCurrencyExchangeRateError extends ConverterState {}
 
 class SetBaseCurrencyState extends ConverterState {}
+
+class SetTargetCurrencyState extends ConverterState {}
+
+class GetBaseCurrenciesListState extends ConverterState {}
