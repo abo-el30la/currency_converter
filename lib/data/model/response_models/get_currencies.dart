@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'get_currencies.g.dart';
+
 class GetCurrencies {
   final Map<String, Currency>? data;
 
@@ -20,14 +24,23 @@ class GetCurrencies {
   };
 }
 
+@HiveType(typeId: 0)
 class Currency {
+  @HiveField(0)
   final String? symbol;
+  @HiveField(1)
   final String? name;
+  @HiveField(2)
   final String? symbolNative;
+  @HiveField(3)
   final int? decimalDigits;
+  @HiveField(4)
   final int? rounding;
+  @HiveField(5)
   final String? code;
+  @HiveField(6)
   final String? namePlural;
+  @HiveField(7)
   final String? type;
 
   Currency({

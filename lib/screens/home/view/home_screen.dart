@@ -1,3 +1,5 @@
+import 'package:currency_converter/config/routing/k_routes.dart';
+import 'package:currency_converter/core/extension/context_extensions.dart';
 import 'package:currency_converter/core/res/assets.dart';
 import 'package:currency_converter/core/widgets/customs/loading_widget.dart';
 import 'package:currency_converter/screens/home/cubit/home_cubit.dart';
@@ -23,9 +25,11 @@ class HomeScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               actions: [
-                Padding(
-                  padding: EdgeInsets.all(16.r),
-                  child: SvgPicture.asset(
+                IconButton(
+                  onPressed: () {
+                    context.navNamedTo(KAppRoutes.converterScreen);
+                  },
+                  icon: SvgPicture.asset(
                     KAppSvgs.currencyConverter,
                     height: 32.r,
                     width: 32.r,

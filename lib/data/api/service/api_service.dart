@@ -28,7 +28,7 @@ class ApiService {
   }
 
   /// get currency list
-  Future<dynamic> getCurrencies({String? currencies}) async {
+  Future<Response<dynamic>> getCurrencies({String? currencies}) async {
     return _apiClient.get(
       '/v1/currencies',
       queryParameters: {
