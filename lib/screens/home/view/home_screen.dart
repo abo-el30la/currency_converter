@@ -2,6 +2,7 @@ import 'package:currency_converter/config/routing/k_routes.dart';
 import 'package:currency_converter/core/extension/context_extensions.dart';
 import 'package:currency_converter/core/res/assets.dart';
 import 'package:currency_converter/core/widgets/customs/loading_widget.dart';
+import 'package:currency_converter/data/repository/repository.dart';
 import 'package:currency_converter/screens/home/cubit/home_cubit.dart';
 import 'package:currency_converter/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit()..getCurrencyList(),
+      create: (context) => HomeCubit(
+        remoteRepository: Repository.instance,
+      )..getCurrencyList(),
       child: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          // switch (state) {
+          //   case HomeInitial():
+          //   case GetCurrencyListLoading():
+          //   case GetCurrencyListSuccess():
+          //   case GetCurrencyListError():
+          // }
+        },
         builder: (context, state) {
           final cubit = context.read<HomeCubit>();
           return Scaffold(
@@ -54,4 +64,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

@@ -13,10 +13,11 @@ import '../../../data/storage/hive_config.dart';
 part 'converter_state.dart';
 
 class ConverterCubit extends Cubit<ConverterState> {
+  final RemoteRepository repository;
   TextEditingController amountController = TextEditingController();
   TextEditingController targetAmountController = TextEditingController();
 
-  ConverterCubit() : super(ConverterInitial());
+  ConverterCubit(this.repository) : super(ConverterInitial());
   String baseCurrency = 'USD';
   String targetCurrency = 'USD';
   double exchangeRate = 1.0;
@@ -78,7 +79,7 @@ class ConverterCubit extends Cubit<ConverterState> {
       //   emit(GetCurrencyExchangeRateSuccess());
       //   return;
       // }
-      final Response result = await Repository.instance.getLatestRates(
+      final Response result = await repository.getLatestRates(
         baseCurrency: baseCurrency,
       );
       logger.i(result.runtimeType);

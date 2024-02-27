@@ -1,4 +1,3 @@
-import 'package:currency_converter/data/storage/hive_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

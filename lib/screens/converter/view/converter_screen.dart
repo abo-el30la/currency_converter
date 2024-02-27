@@ -1,5 +1,6 @@
 import 'package:currency_converter/core/res/colors.dart';
 import 'package:currency_converter/core/widgets/customs/loading_widget.dart';
+import 'package:currency_converter/data/repository/repository.dart';
 import 'package:currency_converter/screens/converter/cubit/converter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,7 @@ class ConverterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ConverterCubit()
+      create: (context) => ConverterCubit(Repository.instance)
         ..getBaseCurrenciesList()
         ..getCurrencyExchangeRate(),
       child: BlocConsumer<ConverterCubit, ConverterState>(

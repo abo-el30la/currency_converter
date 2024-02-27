@@ -1,6 +1,14 @@
 import '../api/api.dart';
 
-class Repository {
+abstract class RemoteRepository {
+  Future<dynamic> getCurrencyList();
+  Future<dynamic> getLatestRates({
+    String currencies,
+    String baseCurrency,
+  });
+}
+
+class Repository implements RemoteRepository{
   Repository._();
 
   static final instance = Repository._();
@@ -8,11 +16,13 @@ class Repository {
   final ApiService _apiService = ApiService.instance;
 
   /// get Currency List
+  @override
   Future<dynamic> getCurrencyList() async {
     return await _apiService.getCurrencies();
   }
 
   /// get latest exchange rates
+  @override
   Future<dynamic> getLatestRates({
     String currencies = '',
     String baseCurrency = 'USD',
